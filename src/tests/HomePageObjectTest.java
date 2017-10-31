@@ -11,13 +11,17 @@ import utils.SeleniumWebDriverUtils;
 public class HomePageObjectTest extends CommonTests {
 
     protected HomePageObject homePage;
+    protected String homePageVerification;
 
-    @Parameters({"url", "browserType", "waitTimeOut"})
+    @Parameters({"url", "browserType", "waitTimeOut", "username", "password", "homePageVerification" })
     @BeforeClass
-    public void setUp(String url, String browserType, Integer waitTimeOut) throws Exception {
+    public void setUp(String url, String browserType, Integer waitTimeOut, String username, String password, String homePageVerification) throws Exception {
         this.url = url;
         this.browserType = browserType;
         this.waitTimeOut = waitTimeOut;
+        this.username = username;
+        this.password = password;
+        this.homePageVerification = homePageVerification;
         driver = new SeleniumWebDriverUtils(url, browserType, waitTimeOut);
         homePage = new HomePageObject(driver);
         driver.startDriver();
@@ -25,8 +29,8 @@ public class HomePageObjectTest extends CommonTests {
 
     @Test
     public void homePageTests() throws Exception {
-        login(driver);
-        Assert.assertTrue(homePage.verifyHomePage(), "Home is page is not open");
+        login(driver, username, password);
+        Assert.assertTrue(homePage.verifyHomePage(homePageVerification), "Home is page is not open");
     }
 
     @AfterMethod

@@ -5,10 +5,19 @@
     <parameter name="url" value="https://mysports.tomtom.com/app/login/"/>
     <parameter name="browserType" value="chrome"/>
     <parameter name="waitTimeOut" value="30"/>
+    <parameter name="username" value="garthbosch@gmail.com" />
+    <parameter name="password" value="gfb821009" />
 
-    <test name="Accessment Test">
+    <test name="LoginPageObjectTest" enabled="true">
+        <parameter name="loginPageVerification" value="Sign is page is not open" />
         <classes>
             <class name="tests.LoginPageObjectTest"/>
+        </classes>
+    </test>
+
+    <test name="HomePageObjectTest" enabled="true">
+        <parameter name="homePageVerification" value="Blog" />
+        <classes>
             <class name="tests.HomePageObjectTest"/>
         </classes>
     </test>

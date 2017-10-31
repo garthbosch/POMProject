@@ -12,11 +12,15 @@ public class CommonTests {
     protected String url;
     protected String browserType;
     protected Integer waitTimeOut;
+    protected String username;
+    protected String password;
 
-    public void login(SeleniumWebDriverUtils seleniumWebDriverUtils) throws Exception {
+    public void login(SeleniumWebDriverUtils seleniumWebDriverUtils, String username, String password) throws Exception {
+        this.username = username;
+        this.password = password;
         loginPage = new LoginPageObject(seleniumWebDriverUtils);
-        loginPage.enterUsername("garthbosch@gmail.com");
-        loginPage.enterPassword("gfb821009");
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
         loginPage.clickSignIn();
     }
 }

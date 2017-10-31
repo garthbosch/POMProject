@@ -11,7 +11,7 @@ public class HomePageObject {
         this.driver = driver;
     }
 
-    public boolean verifyHomePage() throws Exception {
-        return driver.getTextByXpath(blogButton).contains("GeeTee");
+    public boolean verifyHomePage(String homePageVerification) throws Exception {
+        return driver.getTextByXpath(blogButton).contains(homePageVerification);
     }
 }

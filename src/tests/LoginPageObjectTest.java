@@ -11,13 +11,17 @@ import utils.CaptureScreenShot;
 public class LoginPageObjectTest extends CommonTests {
 
     protected LoginPageObject loginPage;
+    protected String loginPageVerification;
 
-    @Parameters({"url", "browserType", "waitTimeOut"})
+    @Parameters({"url", "browserType", "waitTimeOut", "username", "password", "loginPageVerification"})
     @BeforeClass
-    public void setUp(String url, String browserType, Integer waitTimeOut) throws Exception {
+    public void setUp(String url, String browserType, Integer waitTimeOut, String username, String password, String loginPageVerification) throws Exception {
         this.url = url;
         this.browserType = browserType;
         this.waitTimeOut = waitTimeOut;
+        this.username = username;
+        this.password = password;
+        this.loginPageVerification = loginPageVerification;
         driver = new SeleniumWebDriverUtils(url, browserType, waitTimeOut);
         loginPage = new LoginPageObject(driver);
         driver.startDriver();
@@ -25,9 +29,9 @@ public class LoginPageObjectTest extends CommonTests {
 
     @Test
     public void loginPageTests() throws Exception {
-        Assert.assertTrue(loginPage.verifyLoginPage(), "Sign is page is not open");
-        loginPage.enterUsername("garthbosch@gmail.com");
-        loginPage.enterPassword("gfb821009");
+        Assert.assertTrue(loginPage.verifyLoginPage(), loginPageVerification);
+        loginPage.enterUsername(username);
+        loginPage.enterPassword(password);
         loginPage.clickSignIn();
     }
 
