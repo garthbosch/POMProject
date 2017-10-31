@@ -35,8 +35,8 @@ public class HomePageObjectTest extends CommonTests {
 
     @AfterMethod
     public void tearDown(ITestResult result) throws Exception {
-        System.out.println("Testcase status is " + result.getStatus());
-        System.out.println("Iresult status is " + result.FAILURE);
+        log.info("Testcase status is " + result.getStatus());
+        log.info("Iresult status is " + result.FAILURE);
 
         switch (result.getStatus()) {
             case ITestResult.FAILURE:

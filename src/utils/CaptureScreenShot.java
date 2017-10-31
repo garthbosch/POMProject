@@ -1,6 +1,8 @@
 package utils;
 
+import gfb.logging.Logging;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
@@ -12,6 +14,7 @@ import java.util.Date;
 public class CaptureScreenShot {
 
     protected String screenshotFile = "";
+    protected static Logger log = Logging.getLogger(true);
 
     public void captureScreenshot(boolean isError, String selectedBrowserType, String filename, SeleniumWebDriverUtils driver) throws Exception {
         StringBuilder sb = new StringBuilder();
@@ -25,7 +28,7 @@ public class CaptureScreenShot {
         screenshotFile = sb.toString();
         File screenCapture = ((TakesScreenshot) driver.driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenCapture, new File(screenshotFile));
-        System.out.println("[Info] Screenshot " + screenshotFile.toString() + " taken successfully.");
+        log.info("Screenshot " + screenshotFile.toString() + " taken successfully.");
     }
 
     public String getEvidenceFolder(String filename) throws IOException {

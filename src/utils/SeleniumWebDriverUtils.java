@@ -1,6 +1,8 @@
 package utils;
 
 
+import gfb.logging.Logging;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +32,7 @@ public class SeleniumWebDriverUtils {
     public String browserType;
     public Integer waitTimeOut;
     public Boolean isDriverRunning;
+    protected static Logger log = Logging.getLogger(true);
 
     File fileChromeDriver;
     File fileIEDriver;
@@ -136,9 +139,9 @@ public class SeleniumWebDriverUtils {
     public void shutdown() {
         try {
             driver.quit();
-            System.out.println("Info == Driver shutting down");
+            log.info("Driver shutting down");
         } catch (Exception ex) {
-            System.err.println("Error == Error found while shutting down driver - " + ex.getMessage());
+            log.error("Error found while shutting down driver - " + ex.getMessage());
         }
         isDriverRunning = false;
     }
@@ -146,10 +149,10 @@ public class SeleniumWebDriverUtils {
     public Boolean waitForXpathAccessibility(String xpath) {
         try {
             WebElement element = (new WebDriverWait(driver, waitTimeOut)).until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-            System.out.println("Element " + xpath + " found on page");
+            log.info("Element " + xpath + " found on page");
             return true;
         } catch (Exception ex) {
-            System.err.println("Unable to find element " + xpath + " - " + ex.getMessage());
+            log.error("Unable to find element " + xpath + " - " + ex.getMessage());
             return false;
         }
     }
@@ -157,14 +160,14 @@ public class SeleniumWebDriverUtils {
     public void clickByXpath(String element) {
         if (waitForXpathAccessibility(element)) {
             driver.findElement(By.xpath(element)).click();
-            System.out.println("Element " + element + " successfully clicked.");
+            log.info("Element " + element + " successfully clicked.");
         }
     }
 
     public void clickByLinkText(PageObjects elements) {
         if (waitForXpathAccessibility(elements.getElementId())) {
             driver.findElement(By.linkText(elements.getElementId())).click();
-            System.out.println("Element " + elements.getElementNameOnPage() + " successfully clicked.");
+            log.info("Element " + elements.getElementNameOnPage() + " successfully clicked.");
         }
     }
 
@@ -185,7 +188,7 @@ public class SeleniumWebDriverUtils {
     public void enterTextByXpath(String element, String text) {
         if (waitForXpathAccessibility(element)) {
             driver.findElement(By.xpath(element)).sendKeys(text);
-            System.out.println("Text " + text + " entered in element " + element + " successfully");
+            log.info("Text " + text + " entered in element " + element + " successfully");
         }
     }
 
