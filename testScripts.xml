@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Page Object Test">
+    <parameter name="url" value="https://mysports.tomtom.com/app/login/"/>
+    <parameter name="browserType" value="chrome"/>
+    <parameter name="waitTimeOut" value="30"/>
+
+    <test name="Accessment Test">
+        <classes>
+            <class name="tests.LoginPageObjectTest"/>
+            <class name="tests.HomePageObjectTest"/>
+        </classes>
+    </test>
+</suite>
