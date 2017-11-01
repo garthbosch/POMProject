@@ -2,10 +2,8 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import pageObjects.HomePageObject;
-import utils.CaptureScreenShot;
 import utils.SeleniumWebDriverUtils;
 
 public class HomePageObjectTest extends CommonTests {

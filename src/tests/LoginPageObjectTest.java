@@ -2,12 +2,9 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import pageObjects.LoginPageObject;
 import utils.SeleniumWebDriverUtils;
-import utils.CaptureScreenShot;
-
 public class LoginPageObjectTest extends CommonTests {
 
     protected LoginPageObject loginPage;
