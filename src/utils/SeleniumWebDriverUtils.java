@@ -46,7 +46,6 @@ public class SeleniumWebDriverUtils {
         System.setProperty("webdriver.gecko.driver", fileFirefoxDriver.getAbsolutePath());
     }
 
-
     public Boolean getDriverRunning() {
         return isDriverRunning;
     }
@@ -54,7 +53,7 @@ public class SeleniumWebDriverUtils {
     public void startDriver() throws Exception {
         switch (browserType.toLowerCase()) {
             case BrowserType.CHROME:
-                ChromeOptions chromeOptions = new ChromeOptions();
+//                ChromeOptions chromeOptions = new ChromeOptions();
             /* added this code to remove the error message chrome was throwing "You are using an unsupported command-line flag:
              * --ignore-certificate-errors. Stability and security will suffer" */
             /* added this code to remove the message chrome was throwing "Chrome is being controlled by automated test software" */
@@ -75,6 +74,12 @@ public class SeleniumWebDriverUtils {
             case BrowserType.IE:
                 driver = new InternetExplorerDriver(setCapabilities(BrowserType.IE));
                 isDriverRunning = true;
+                break;
+
+            default:
+                driver = new ChromeDriver(setCapabilities(BrowserType.CHROME));
+                isDriverRunning = true;
+                setURL();
                 break;
         }
     }
