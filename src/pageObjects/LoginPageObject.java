@@ -4,10 +4,10 @@ import utils.SeleniumWebDriverUtils;
 
 public class LoginPageObject {
 
-    private String loginContainer = "//h2[@class='login-form-title text-center ng-binding']";
-    private String usernameTextBox = "//input[@id='email']";
-    private String passwordTextBox = "//input[@id='password']";
-    private String loginButton = "//input[@id='logInButton']";
+    private static final String LOGIN_CONTAINER = "//h2[@class='login-form-title text-center ng-binding']";
+    private static final String USERNAME_TEXTBOX = "//input[@id='email']";
+    private static final String PASSWORD_TEXTBOX = "//input[@id='password']";
+    private static final String LOGIN_BUTTON = "//input[@id='logInButton']";
     protected SeleniumWebDriverUtils driver;
 
     public LoginPageObject(SeleniumWebDriverUtils driver) {
@@ -15,12 +15,12 @@ public class LoginPageObject {
     }
 
     public boolean verifyLoginPage() throws Exception {
-        return driver.getTextByXpath(loginContainer).contains("SIGN IN");
+        return driver.getTextByXpath(LOGIN_CONTAINER).contains("SIGN IN");
     }
 
     public void enterUsername(String usernameText) {
         try {
-            driver.enterTextByXpath(usernameTextBox, usernameText);
+            driver.enterTextByXpath(USERNAME_TEXTBOX, usernameText);
         } catch (Exception e) {
             System.err.println("enterUsername method failed - " + e.getMessage());
             e.printStackTrace();
@@ -29,7 +29,7 @@ public class LoginPageObject {
 
     public void enterPassword(String passwordText) {
         try {
-            driver.enterTextByXpath(passwordTextBox, passwordText);
+            driver.enterTextByXpath(PASSWORD_TEXTBOX, passwordText);
         } catch (Exception e) {
             System.err.println("enterPassword method failed - " + e.getMessage());
             e.printStackTrace();
@@ -38,7 +38,7 @@ public class LoginPageObject {
 
     public void clickSignIn() {
         try {
-            driver.clickByXpath(loginButton);
+            driver.clickByXpath(LOGIN_BUTTON);
         } catch (Exception e) {
             System.err.println("clickSignIn method failed - " + e.getMessage());
             e.printStackTrace();
